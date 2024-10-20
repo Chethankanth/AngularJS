@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.3/angular.min.js"></script>
+  </head>
+  <body>
+    <div ng-controller="myCtrl">
+      <!-- Removed incorrect closing </p> tag, as it's unnecessary here -->
+      <p>First number: <input type="number" ng-model="firstnumber" placeholder="Enter the first number"></p>
+      
+      <!-- Removed incorrect closing </p> tag, as it's unnecessary here -->
+      <p>Second number: <input type="number" ng-model="secondnumber" placeholder="Enter the second number"></p>
+
+      <!-- Corrected "nmuumber" to "number" for the factorial input field label -->
+      <p>Factorial number: <input type="number" ng-model="fnumber" placeholder="Enter the factorial number"></p>
+
+      <!-- Fixed typo: "Aubtraction" -> "Subtraction" for the button label -->
+      <button ng-click="Addition()">Click to get addition result</button>
+      <button ng-click="Subtraction()">Click to get subtraction result</button>
+      <button ng-click="Multiplication()">Click to get multiplication result</button>
+      <button ng-click="Division()">Click to get division result</button>
+      
+      <!-- Corrected factorial function name from Factorial to factorial (AngularJS is case-sensitive) -->
+      <button ng-click="Factorial()">Click to get factorial result</button>
+      
+      <h1>The result is: {{result}}</h1>
+      <h2>The factorial result is: {{fresult}}</h2>
+    </div>
+
+    <script>
+      angular.module('myApp', []).controller('myCtrl', function($scope) {
+        // Corrected variable names by removing spaces between "firstnumber" and "secondnumber"
+        $scope.Addition = function() {
+          $scope.result = $scope.firstnumber + $scope.secondnumber;
+        };
+
+        // Corrected function name typo "Aubtraction" -> "Subtraction"
+        $scope.Subtraction = function() {
+          $scope.result = $scope.firstnumber - $scope.secondnumber;
+        };
+
+        // Corrected variable names by removing spaces between "firstnumber" and "secondnumber"
+        $scope.Multiplication = function() {
+          $scope.result = $scope.firstnumber * $scope.secondnumber;
+        };
+
+        // Corrected variable names by removing spaces between "firstnumber" and "secondnumber"
+        $scope.Division = function() {
+          if ($scope.secondnumber != 0) {
+            $scope.result = $scope.firstnumber / $scope.secondnumber;
+          } else {
+            $scope.result = "Division by Zero is not possible";
+          }
+        };
+
+        // Fixed factorial logic and corrected typo "fresult" (from "frsult") for consistency
+        $scope.Factorial = function() {
+          var fact = function(n) {
+            return n === 0 || n === 1 ? 1 : n * fact(n - 1); // Recursively calculates factorial
+          };
+          $scope.fresult = fact($scope.fnumber); // Using $scope.fnumber in the recursive function
+        };
+      });
+    </script>
+  </body>
+</html>
